@@ -1,0 +1,100 @@
+.stock {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  text-align: left;
+}
+
+.stock header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stock h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--text-h);
+}
+
+.stock button {
+  padding: 8px 16px;
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}
+
+.stock button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.error {
+  color: #e5484d;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.chart .grid {
+  stroke: var(--border);
+  stroke-dasharray: 4 4;
+}
+
+.chart .axis {
+  fill: var(--text);
+  font-size: 12px;
+}
+
+.chart .line {
+  fill: none;
+  stroke-width: 2;
+}
+
+.chart .up { stroke: #e5484d; fill: #e5484d; }
+.chart .down { stroke: #3b82f6; fill: #3b82f6; }
+.chart .line.up, .chart .line.down { fill: none; }
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.stock table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.stock th,
+.stock td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.stock th {
+  background: var(--code-bg);
+  color: var(--text-h);
+  text-align: left;
+}
+
+.stock td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.stock tbody tr:last-child td {
+  border-bottom: none;
+}
