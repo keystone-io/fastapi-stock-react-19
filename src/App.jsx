@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const API_URL = '/samsung' // vite proxy → http://localhost:8000/samsung
+const API_URL = '/samsung' // vite proxy → http://13.236.45.58/samsung
 
 // 응답 형식이 달라도 [{...}, {...}] 형태의 행 배열로 변환
 function toRows(json) {
@@ -70,6 +70,7 @@ function PriceChart({ rows, dateKey, closeKey }) {
 
 function App() {
   const [rows, setRows] = useState([])
+  const [meta, setMeta] = useState({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -79,7 +80,9 @@ function App() {
     try {
       const res = await fetch(API_URL, { signal })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      setRows(toRows(await res.json()))
+      const json = await res.json()
+      setRows(toRows(json))
+      setMeta({ name: json?.name, ticker: json?.ticker })
     } catch (e) {
       if (e.name !== 'AbortError') setError(e.message)
     } finally {
@@ -100,7 +103,10 @@ function App() {
   return (
     <main className="stock">
       <header>
-        <h1>삼성전자 최근 30일</h1>
+        <h1>
+          {meta.name ?? '삼성전자'} 최근 1개월
+          {meta.ticker && <small className="ticker"> {meta.ticker}</small>}
+        </h1>
         <button type="button" onClick={() => load()} disabled={loading}>
           {loading ? '불러오는 중…' : '새로고침'}
         </button>

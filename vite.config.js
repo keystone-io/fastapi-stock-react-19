@@ -5,9 +5,12 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   server: {
-    // 개발 중 CORS 문제 없이 FastAPI(8000)로 요청을 전달
+    // 개발 중 CORS 문제 없이 FastAPI 서버로 요청을 전달
     proxy: {
-      '/samsung': 'http://localhost:8000',
+      '/samsung': {
+        target: 'http://13.236.45.58',
+        changeOrigin: true,
+      },
     },
   },
 })
