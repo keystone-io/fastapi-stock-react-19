@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/samsung", "destination": "http://13.236.45.58/samsung" }
+  ]
+}
